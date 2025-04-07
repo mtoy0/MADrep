@@ -1,0 +1,45 @@
+<html>
+<head>
+<title>signUp.fxml</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #d5b778;}
+.s1 { color: #bcbec4;}
+.s2 { color: #6aab73;}
+.s3 { color: #bcbec4;}
+</style>
+</head>
+<body bgcolor="#1e1f22">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+signUp.fxml</font>
+</center></td></tr></table>
+<pre><span class="s0">&lt;?</span><span class="s1">xml version</span><span class="s2">=&quot;1.0&quot; </span><span class="s1">encoding</span><span class="s2">=&quot;UTF-8&quot;</span><span class="s0">?&gt;</span>
+
+<span class="s0">&lt;?</span><span class="s1">import </span><span class="s2">javafx.scene.control.*</span><span class="s0">?&gt;</span>
+<span class="s0">&lt;?</span><span class="s1">import </span><span class="s2">javafx.scene.layout.*</span><span class="s0">?&gt;</span>
+<span class="s0">&lt;?</span><span class="s1">import </span><span class="s2">javafx.scene.text.*</span><span class="s0">?&gt;</span>
+
+<span class="s0">&lt;AnchorPane </span><span class="s1">prefHeight</span><span class="s2">=&quot;400.0&quot; </span><span class="s1">prefWidth</span><span class="s2">=&quot;400.0&quot; </span><span class="s1">xmlns</span><span class="s2">=&quot;http://javafx.com/javafx/17.0.12&quot; </span><span class="s1">xmlns:fx</span><span class="s2">=&quot;http://javafx.com/fxml/1&quot; </span><span class="s1">fx:controller</span><span class="s2">=&quot;edu.okcu.teamproject2.signUpController&quot;</span><span class="s0">&gt;</span>
+   <span class="s0">&lt;Label </span><span class="s1">layoutX</span><span class="s2">=&quot;14.0&quot; </span><span class="s1">layoutY</span><span class="s2">=&quot;14.0&quot; </span><span class="s1">text</span><span class="s2">=&quot;Sign Up&quot;</span><span class="s0">&gt;</span>
+      <span class="s0">&lt;font&gt;</span>
+         <span class="s0">&lt;Font </span><span class="s1">size</span><span class="s2">=&quot;50.0&quot; </span><span class="s0">/&gt;</span>
+      <span class="s0">&lt;/font&gt;</span>
+   <span class="s0">&lt;/Label&gt;</span>
+   <span class="s0">&lt;TextField </span><span class="s1">fx:id</span><span class="s2">=&quot;enterLastName&quot; </span><span class="s1">layoutX</span><span class="s2">=&quot;14.0&quot; </span><span class="s1">layoutY</span><span class="s2">=&quot;121.0&quot; </span><span class="s1">onAction</span><span class="s2">=&quot;#LastNameEntered&quot; </span><span class="s1">promptText</span><span class="s2">=&quot;Enter last name&quot; </span><span class="s0">/&gt;</span>
+   <span class="s0">&lt;TextField </span><span class="s1">fx:id</span><span class="s2">=&quot;enterEmail&quot; </span><span class="s1">layoutX</span><span class="s2">=&quot;14.0&quot; </span><span class="s1">layoutY</span><span class="s2">=&quot;154.0&quot; </span><span class="s1">onAction</span><span class="s2">=&quot;#emailEntered&quot; </span><span class="s1">promptText</span><span class="s2">=&quot;Enter email&quot; </span><span class="s0">/&gt;</span>
+   <span class="s0">&lt;PasswordField </span><span class="s1">fx:id</span><span class="s2">=&quot;passwordBox&quot; </span><span class="s1">layoutX</span><span class="s2">=&quot;14.0&quot; </span><span class="s1">layoutY</span><span class="s2">=&quot;187.0&quot; </span><span class="s1">onAction</span><span class="s2">=&quot;#passwordEntered&quot; </span><span class="s1">promptText</span><span class="s2">=&quot;Enter password&quot; </span><span class="s0">/&gt;</span>
+   <span class="s0">&lt;Button </span><span class="s1">fx:id</span><span class="s2">=&quot;signUpButton&quot; </span><span class="s1">layoutX</span><span class="s2">=&quot;14.0&quot; </span><span class="s1">layoutY</span><span class="s2">=&quot;291.0&quot; </span><span class="s1">mnemonicParsing</span><span class="s2">=&quot;false&quot; </span><span class="s1">onAction</span><span class="s2">=&quot;#signUpClick&quot; </span><span class="s1">text</span><span class="s2">=&quot;Sign Up&quot; </span><span class="s0">/&gt;</span>
+   <span class="s0">&lt;Button </span><span class="s1">fx:id</span><span class="s2">=&quot;cancelButton&quot; </span><span class="s1">layoutX</span><span class="s2">=&quot;14.0&quot; </span><span class="s1">layoutY</span><span class="s2">=&quot;327.0&quot; </span><span class="s1">mnemonicParsing</span><span class="s2">=&quot;false&quot; </span><span class="s1">onAction</span><span class="s2">=&quot;#cancelClicked&quot; </span><span class="s1">text</span><span class="s2">=&quot;Cancel&quot; </span><span class="s0">/&gt;</span>
+   <span class="s0">&lt;RadioButton </span><span class="s1">fx:id</span><span class="s2">=&quot;studentRadioButton&quot; </span><span class="s1">layoutX</span><span class="s2">=&quot;14.0&quot; </span><span class="s1">layoutY</span><span class="s2">=&quot;253.0&quot; </span><span class="s1">mnemonicParsing</span><span class="s2">=&quot;false&quot; </span><span class="s1">onAction</span><span class="s2">=&quot;#onStudentRadioButtonClick&quot; </span><span class="s1">text</span><span class="s2">=&quot;Student&quot;</span><span class="s0">&gt;</span>
+      <span class="s0">&lt;toggleGroup&gt;</span>
+         <span class="s0">&lt;ToggleGroup </span><span class="s1">fx:id</span><span class="s2">=&quot;studentProfessor&quot; </span><span class="s0">/&gt;</span>
+      <span class="s0">&lt;/toggleGroup&gt;</span>
+   <span class="s0">&lt;/RadioButton&gt;</span>
+   <span class="s0">&lt;RadioButton </span><span class="s1">fx:id</span><span class="s2">=&quot;professorRadioButton&quot; </span><span class="s1">layoutX</span><span class="s2">=&quot;14.0&quot; </span><span class="s1">layoutY</span><span class="s2">=&quot;227.0&quot; </span><span class="s1">mnemonicParsing</span><span class="s2">=&quot;false&quot; </span><span class="s1">onAction</span><span class="s2">=&quot;#onProfessorRadioButtonClick&quot; </span><span class="s1">text</span><span class="s2">=&quot;Professor&quot; </span><span class="s1">toggleGroup</span><span class="s2">=&quot;$studentProfessor&quot; </span><span class="s0">/&gt;</span>
+   <span class="s0">&lt;TextField </span><span class="s1">fx:id</span><span class="s2">=&quot;enterFirstName&quot; </span><span class="s1">layoutX</span><span class="s2">=&quot;15.0&quot; </span><span class="s1">layoutY</span><span class="s2">=&quot;88.0&quot; </span><span class="s1">onAction</span><span class="s2">=&quot;#firstNameEntered&quot; </span><span class="s1">promptText</span><span class="s2">=&quot;Enter first name&quot; </span><span class="s0">/&gt;</span>
+<span class="s0">&lt;/AnchorPane&gt;</span>
+</pre>
+</body>
+</html>
