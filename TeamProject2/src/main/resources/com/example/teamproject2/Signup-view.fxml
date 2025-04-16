@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.teamproject2.SignupController">
+   <children>
+      <Label layoutX="164.0" layoutY="75.0" text="First Name" />
+      <TextField fx:id="FirstNameField" layoutX="164.0" layoutY="92.0" prefHeight="26.0" prefWidth="273.0" promptText="Enter First Name" />
+      <TextField fx:id="LastNameField" layoutX="164.0" layoutY="145.0" prefHeight="26.0" prefWidth="273.0" promptText="Enter Last Name" />
+      <Label layoutX="164.0" layoutY="128.0" text="Last Name" />
+      <Label layoutX="164.0" layoutY="177.0" text="Email" />
+      <TextField fx:id="EmailField" layoutX="164.0" layoutY="194.0" prefHeight="26.0" prefWidth="273.0" promptText="Enter Email" />
+      <Label layoutX="164.0" layoutY="227.0" text="Password" />
+      <PasswordField fx:id="PasswordField" layoutX="164.0" layoutY="244.0" prefHeight="26.0" prefWidth="273.0" promptText="Enter Password" />
+      <Button layoutX="165.0" layoutY="332.0" mnemonicParsing="false" onAction="#onSignupButtonClick" prefHeight="26.0" prefWidth="106.0" text="Signup" />
+      <Button layoutX="331.0" layoutY="332.0" mnemonicParsing="false" onAction="#onReturnButtonClick" prefHeight="26.0" prefWidth="106.0" text="Return" />
+      <Label layoutX="46.0" layoutY="24.0" prefHeight="28.0" prefWidth="125.0" text="Signup">
+         <font>
+            <Font size="32.0" />
+         </font>
+      </Label>
+      <Label fx:id="statusLabel" layoutX="165.0" layoutY="369.0" prefHeight="17.0" prefWidth="273.0" />
+      <ComboBox fx:id="roleComboBox" layoutX="164.0" layoutY="277.0" prefWidth="150.0" promptText=" Select Role">
+       </ComboBox>
+   </children>
+   <effect>
+      <ColorAdjust />
+   </effect>
+</AnchorPane>

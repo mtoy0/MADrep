@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.teamproject2.StudentLoginController">
+   <children>
+      <!-- Table View for displaying classes -->
+      <TableView fx:id="tableView" layoutX="50.0" layoutY="50.0" prefHeight="200.0" prefWidth="500.0">
+         <columns>
+            <TableColumn fx:id="classNameColumn" prefWidth="269.0" text="ClassName" />
+            <TableColumn fx:id="classIdColumn" prefWidth="230.0" text="ClassID" />
+         </columns>
+      </TableView>
+
+      <!-- Label and TextField for browsing classes -->
+      <Label layoutX="50.0" layoutY="263.0" prefHeight="17.0" prefWidth="92.0" text="Search Classes" />
+      <TextField fx:id="classField" layoutX="50.0" layoutY="280.0" prefWidth="200.0" />
+      <TextField fx:id="classIdField" layoutX="50.0" layoutY="327.0" prefWidth="200.0" />
+
+      <Button fx:id="addButton" layoutX="264.0" layoutY="280.0" mnemonicParsing="false" onAction="#onAddButtonClick" prefHeight="26.0" prefWidth="81.0" text="Add" />
+      <Button fx:id="clearButton" layoutX="264.0" layoutY="327.0" mnemonicParsing="false" onAction="#onClearButtonClick" prefHeight="26.0" prefWidth="81.0" text="Clear" />
+      <Button fx:id="updateButton" layoutX="355.0" layoutY="280.0" mnemonicParsing="false" onAction="#onUpdateButtonClick" prefHeight="26.0" prefWidth="81.0" text="Update" />
+      <Button fx:id="deleteButton" layoutX="355.0" layoutY="327.0" mnemonicParsing="false" onAction="#onDeleteButtonClick" prefHeight="26.0" prefWidth="81.0" text="Delete" />
+      <Label layoutX="50.0" layoutY="310.0" prefHeight="17.0" prefWidth="98.0" text="Search Class ID" />
+      <Button fx:id="logoutButton" layoutX="469.0" layoutY="327.0" mnemonicParsing="false" onAction="#onLogoutButtonClick" prefHeight="26.0" prefWidth="81.0" text="Logout" />
+      <Label fx:id="studentIdLabel" layoutX="50.0" layoutY="33.0" prefHeight="17.0" prefWidth="113.0" text="StudentID" />
+      <Label fx:id="studentNameLabel" layoutX="50.0" layoutY="14.0" prefHeight="17.0" prefWidth="227.0" text="StudentName" />
+   </children>
+</AnchorPane>

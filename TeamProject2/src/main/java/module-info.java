@@ -1,8 +1,8 @@
-module edu.okcu.teamproject2 {
+module com.example.teamproject2 {
     requires javafx.controls;
     requires javafx.fxml;
 
 
-    opens edu.okcu.teamproject2 to javafx.fxml;
-    exports edu.okcu.teamproject2;
+    opens com.example.teamproject2 to javafx.fxml;
+    exports com.example.teamproject2;
 }
