@@ -27,5 +27,6 @@
 		<level name="Maven: org.apiguardian:apiguardian-api:1.1.2" value="project"/>
 		<level name="Maven: org.junit.jupiter:junit-jupiter-engine:5.10.2" value="project"/>
 		<level name="Maven: org.junit.platform:junit-platform-engine:1.10.2" value="project"/>
+		<level name="Maven: org.mortbay.jetty:jetty-util:6.1.25" value="project"/>
 	</levels>
 </component>

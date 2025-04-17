@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.okcu.teamproject2.StudentTable">
+    <TableView fx:id="tableView" layoutY="200.0" onMouseClicked="#selectRow" prefHeight="194.0" prefWidth="350.0">
+      <columns>
+          <TableColumn fx:id="classColumn" prefWidth="175.0" text="Class" />
+          <TableColumn fx:id="classIDColumn" prefWidth="175.0" text="Class ID" />
+      </columns>
+    </TableView>
+    <Label fx:id="idLabel" layoutX="439.0" prefHeight="38.0" prefWidth="222.0" text="ID: ">
+      <font>
+         <Font size="26.0" />
+      </font></Label>
+   <Label layoutX="4.0" layoutY="94.0" text="First Name:" />
+   <Label layoutX="157.0" layoutY="94.0" text="Last Name:" />
+   <TextField fx:id="firstNameBox" layoutX="3.0" layoutY="112.0" onAction="#firstNameEntered" />
+   <TextField fx:id="lastNameBox" layoutX="157.0" layoutY="112.0" onAction="#lastNamedEntered" />
+   <Label layoutX="4.0" layoutY="138.0" text="Email:" />
+   <TextField fx:id="emailBox" layoutX="3.0" layoutY="156.0" onAction="#emailEntered" />
+   <TextField fx:id="passwordBox" layoutX="157.0" layoutY="156.0" onAction="#passwordEntered" />
+   <Label layoutX="157.0" layoutY="138.0" text="Password:" />
+   <Button fx:id="updateButton" layoutX="358.0" layoutY="360.0" mnemonicParsing="false" onAction="#updateButtonClicked" text="Update" />
+   <Button fx:id="clearButton" layoutX="357.0" layoutY="326.0" mnemonicParsing="false" onAction="#clearButtonClicked" text="Clear" />
+   <Button fx:id="addButton" layoutX="420.0" layoutY="326.0" mnemonicParsing="false" onAction="#onAddButtonClicked" text="Add" />
+   <Button fx:id="deleteButton" layoutX="420.0" layoutY="360.0" mnemonicParsing="false" onAction="#deleteButtonClicked" text="Delete" />
+   <Button fx:id="clearTextFieldButton" layoutX="477.0" layoutY="360.0" mnemonicParsing="false" onAction="#onClearTextFieldButton" text="Clear Text Fields" />
+   <Button fx:id="updateInfoButton" layoutX="326.0" layoutY="156.0" mnemonicParsing="false" onAction="#onUpdateInfoButtonClicked" text="Update Information" />
+   <Label fx:id="nameLabel" layoutX="3.0" prefHeight="38.0" prefWidth="426.0" text="Name: ">
+      <font>
+         <Font size="26.0" />
+      </font>
+   </Label>
+   <Label fx:id="emailLabel" layoutX="4.0" layoutY="35.0" text="Email: ">
+      <font>
+         <Font size="26.0" />
+      </font></Label>
+   <Label fx:id="passwordLabel" layoutX="3.0" layoutY="64.0" text="Password: ">
+      <font>
+         <Font size="26.0" />
+      </font>
+   </Label>
+   <TextField fx:id="classTextBox" layoutX="355.0" layoutY="227.0" onAction="#classTextBoxEntered" />
+   <TextField fx:id="classIDTextBox" layoutX="355.0" layoutY="272.0" onAction="#classIDTextBoxEntered" />
+   <Label layoutX="355.0" layoutY="209.0" text="Class:" />
+   <Label layoutX="356.0" layoutY="256.0" text="Class ID:" />
+   <Button fx:id="logoutButton" layoutX="451.0" layoutY="156.0" mnemonicParsing="false" onAction="#onLogoutButtonClicked" text="Logout" />
+</AnchorPane>

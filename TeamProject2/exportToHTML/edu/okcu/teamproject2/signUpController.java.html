@@ -1,0 +1,150 @@
+<html>
+<head>
+<title>signUpController.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #cf8e6d;}
+.s1 { color: #bcbec4;}
+.s2 { color: #bcbec4;}
+.s3 { color: #2aacb8;}
+.s4 { color: #6aab73;}
+</style>
+</head>
+<body bgcolor="#1e1f22">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+signUpController.java</font>
+</center></td></tr></table>
+<pre><span class="s0">package </span><span class="s1">edu</span><span class="s2">.</span><span class="s1">okcu</span><span class="s2">.</span><span class="s1">teamproject2</span><span class="s2">;</span>
+
+<span class="s0">import </span><span class="s1">javafx</span><span class="s2">.</span><span class="s1">event</span><span class="s2">.</span><span class="s1">ActionEvent</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">javafx</span><span class="s2">.</span><span class="s1">fxml</span><span class="s2">.</span><span class="s1">FXMLLoader</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">javafx</span><span class="s2">.</span><span class="s1">scene</span><span class="s2">.</span><span class="s1">Parent</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">javafx</span><span class="s2">.</span><span class="s1">scene</span><span class="s2">.</span><span class="s1">Scene</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">javafx</span><span class="s2">.</span><span class="s1">scene</span><span class="s2">.</span><span class="s1">control</span><span class="s2">.*;</span>
+<span class="s0">import </span><span class="s1">javafx</span><span class="s2">.</span><span class="s1">stage</span><span class="s2">.</span><span class="s1">Stage</span><span class="s2">;</span>
+
+<span class="s0">import </span><span class="s1">javax</span><span class="s2">.</span><span class="s1">crypto</span><span class="s2">.</span><span class="s1">BadPaddingException</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">javax</span><span class="s2">.</span><span class="s1">crypto</span><span class="s2">.</span><span class="s1">IllegalBlockSizeException</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">javax</span><span class="s2">.</span><span class="s1">crypto</span><span class="s2">.</span><span class="s1">NoSuchPaddingException</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">java</span><span class="s2">.</span><span class="s1">io</span><span class="s2">.*;</span>
+<span class="s0">import </span><span class="s1">java</span><span class="s2">.</span><span class="s1">security</span><span class="s2">.</span><span class="s1">InvalidKeyException</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">java</span><span class="s2">.</span><span class="s1">security</span><span class="s2">.</span><span class="s1">NoSuchAlgorithmException</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">java</span><span class="s2">.</span><span class="s1">util</span><span class="s2">.</span><span class="s1">Objects</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">java</span><span class="s2">.</span><span class="s1">util</span><span class="s2">.</span><span class="s1">Scanner</span><span class="s2">;</span>
+
+<span class="s0">public class </span><span class="s1">signUpController </span><span class="s2">{</span>
+    <span class="s0">public </span><span class="s1">TextField enterEmail</span><span class="s2">;</span>
+    <span class="s0">public </span><span class="s1">PasswordField passwordBox</span><span class="s2">;</span>
+    <span class="s0">public </span><span class="s1">Button signUpButton</span><span class="s2">;</span>
+    <span class="s0">public </span><span class="s1">Button cancelButton</span><span class="s2">;</span>
+    <span class="s0">public </span><span class="s1">ToggleGroup studentProfessor</span><span class="s2">;</span>
+    <span class="s0">public </span><span class="s1">RadioButton studentRadioButton</span><span class="s2">;</span>
+    <span class="s0">public </span><span class="s1">RadioButton professorRadioButton</span><span class="s2">;</span>
+    <span class="s0">public </span><span class="s1">TextField enterLastName</span><span class="s2">;</span>
+    <span class="s0">public </span><span class="s1">TextField enterFirstName</span><span class="s2">;</span>
+    <span class="s0">public </span><span class="s1">Label signUpLabel</span><span class="s2">;</span>
+
+    <span class="s1">String firstName</span><span class="s2">;</span>
+    <span class="s1">String lastName</span><span class="s2">;</span>
+    <span class="s1">String email</span><span class="s2">;</span>
+    <span class="s1">String password</span><span class="s2">;</span>
+    <span class="s0">int </span><span class="s1">studentOrProfessor </span><span class="s2">= </span><span class="s3">0</span><span class="s2">;</span>
+    <span class="s1">String salt </span><span class="s2">= </span><span class="s1">EncryptionMethods</span><span class="s2">.</span><span class="s1">getSalt</span><span class="s2">();</span>
+    <span class="s0">int </span><span class="s1">signUpNumber </span><span class="s2">= </span><span class="s3">0</span><span class="s2">;</span>
+    <span class="s1">String saltedPassword</span><span class="s2">;</span>
+
+
+
+
+    <span class="s0">public </span><span class="s1">signUpController</span><span class="s2">() </span><span class="s0">throws </span><span class="s1">NoSuchAlgorithmException </span><span class="s2">{</span>
+    <span class="s2">}</span>
+
+
+    <span class="s0">public void </span><span class="s1">nameEntered</span><span class="s2">(</span><span class="s1">ActionEvent actionEvent</span><span class="s2">) {</span>
+    <span class="s2">}</span>
+
+    <span class="s0">public void </span><span class="s1">emailEntered</span><span class="s2">(</span><span class="s1">ActionEvent actionEvent</span><span class="s2">) {</span>
+    <span class="s2">}</span>
+
+    <span class="s0">public void </span><span class="s1">passwordEntered</span><span class="s2">(</span><span class="s1">ActionEvent actionEvent</span><span class="s2">) {</span>
+    <span class="s2">}</span>
+
+    <span class="s0">public void </span><span class="s1">signUpClick</span><span class="s2">(</span><span class="s1">ActionEvent actionEvent</span><span class="s2">) </span><span class="s0">throws </span><span class="s1">NoSuchAlgorithmException</span><span class="s2">, </span><span class="s1">IOException</span><span class="s2">, </span><span class="s1">NoSuchPaddingException</span><span class="s2">, </span><span class="s1">IllegalBlockSizeException</span><span class="s2">, </span><span class="s1">BadPaddingException</span><span class="s2">, </span><span class="s1">InvalidKeyException </span><span class="s2">{</span>
+
+        <span class="s1">firstName </span><span class="s2">= </span><span class="s1">enterFirstName</span><span class="s2">.</span><span class="s1">getText</span><span class="s2">();</span>
+        <span class="s1">lastName </span><span class="s2">= </span><span class="s1">enterLastName</span><span class="s2">.</span><span class="s1">getText</span><span class="s2">();</span>
+        <span class="s1">email </span><span class="s2">= </span><span class="s1">enterEmail</span><span class="s2">.</span><span class="s1">getText</span><span class="s2">();</span>
+        <span class="s1">password </span><span class="s2">= </span><span class="s1">passwordBox</span><span class="s2">.</span><span class="s1">getText</span><span class="s2">();</span>
+        <span class="s1">saltedPassword </span><span class="s2">= </span><span class="s1">EncryptionMethods</span><span class="s2">.</span><span class="s1">encrypt</span><span class="s2">(</span><span class="s1">password</span><span class="s2">, </span><span class="s1">salt</span><span class="s2">);</span>
+
+        <span class="s0">if </span><span class="s2">(</span><span class="s1">studentOrProfessor </span><span class="s2">== </span><span class="s3">10</span><span class="s2">) {</span>
+            <span class="s1">BufferedReader reader </span><span class="s2">= </span><span class="s0">new </span><span class="s1">BufferedReader</span><span class="s2">(</span><span class="s0">new </span><span class="s1">FileReader</span><span class="s2">(</span><span class="s4">&quot;StudentData.txt&quot;</span><span class="s2">));</span>
+            <span class="s0">int </span><span class="s1">lines </span><span class="s2">= </span><span class="s3">0</span><span class="s2">;</span>
+            <span class="s0">while </span><span class="s2">(</span><span class="s1">reader</span><span class="s2">.</span><span class="s1">readLine</span><span class="s2">() != </span><span class="s0">null</span><span class="s2">) </span><span class="s1">lines</span><span class="s2">++;</span>
+            <span class="s1">reader</span><span class="s2">.</span><span class="s1">close</span><span class="s2">();</span>
+            <span class="s0">int </span><span class="s1">fileLength </span><span class="s2">= (</span><span class="s0">int</span><span class="s2">) </span><span class="s1">lines </span><span class="s2">/ </span><span class="s3">6</span><span class="s2">;</span>
+            <span class="s1">System</span><span class="s2">.</span><span class="s1">out</span><span class="s2">.</span><span class="s1">println</span><span class="s2">(</span><span class="s1">fileLength</span><span class="s2">);</span>
+            <span class="s0">try </span><span class="s2">{</span>
+                <span class="s1">FileWriter write </span><span class="s2">= </span><span class="s0">new </span><span class="s1">FileWriter</span><span class="s2">(</span><span class="s4">&quot;StudentData.txt&quot;</span><span class="s2">, </span><span class="s0">true</span><span class="s2">);</span>
+                <span class="s1">write</span><span class="s2">.</span><span class="s1">write</span><span class="s2">((</span><span class="s1">fileLength</span><span class="s2">+ </span><span class="s3">1</span><span class="s2">) + </span><span class="s4">&quot;</span><span class="s0">\n</span><span class="s4">&quot; </span><span class="s2">+ </span><span class="s1">firstName </span><span class="s2">+ </span><span class="s4">&quot;</span><span class="s0">\n</span><span class="s4">&quot; </span><span class="s2">+ </span><span class="s1">lastName </span><span class="s2">+ </span><span class="s4">&quot;</span><span class="s0">\n</span><span class="s4">&quot; </span><span class="s2">+ </span><span class="s1">email </span><span class="s2">+ </span><span class="s4">&quot;</span><span class="s0">\n</span><span class="s4">&quot; </span><span class="s2">+ </span><span class="s1">saltedPassword </span><span class="s2">+ </span><span class="s4">&quot;</span><span class="s0">\n</span><span class="s4">&quot; </span><span class="s2">+ </span><span class="s1">salt </span><span class="s2">+ </span><span class="s4">&quot;</span><span class="s0">\n</span><span class="s4">&quot;</span><span class="s2">);</span>
+                <span class="s1">write</span><span class="s2">.</span><span class="s1">close</span><span class="s2">();</span>
+                <span class="s1">signUpLabel</span><span class="s2">.</span><span class="s1">setText</span><span class="s2">(</span><span class="s4">&quot;Sign Up Registered&quot;</span><span class="s2">);</span>
+
+            <span class="s2">} </span><span class="s0">catch </span><span class="s2">(</span><span class="s1">IOException e</span><span class="s2">) {</span>
+                <span class="s1">System</span><span class="s2">.</span><span class="s1">out</span><span class="s2">.</span><span class="s1">println</span><span class="s2">(</span><span class="s4">&quot;An error occurred&quot;</span><span class="s2">);</span>
+                <span class="s1">e</span><span class="s2">.</span><span class="s1">printStackTrace</span><span class="s2">();</span>
+            <span class="s2">}</span>
+        <span class="s2">}</span>
+
+        <span class="s0">if </span><span class="s2">(</span><span class="s1">studentOrProfessor </span><span class="s2">== </span><span class="s3">11</span><span class="s2">) {</span>
+            <span class="s0">try </span><span class="s2">{</span>
+                <span class="s1">BufferedReader reader </span><span class="s2">= </span><span class="s0">new </span><span class="s1">BufferedReader</span><span class="s2">(</span><span class="s0">new </span><span class="s1">FileReader</span><span class="s2">(</span><span class="s4">&quot;ProfessorData.txt&quot;</span><span class="s2">));</span>
+                <span class="s0">int </span><span class="s1">lines </span><span class="s2">= </span><span class="s3">0</span><span class="s2">;</span>
+                <span class="s0">while </span><span class="s2">(</span><span class="s1">reader</span><span class="s2">.</span><span class="s1">readLine</span><span class="s2">() != </span><span class="s0">null</span><span class="s2">) </span><span class="s1">lines</span><span class="s2">++;</span>
+                <span class="s1">reader</span><span class="s2">.</span><span class="s1">close</span><span class="s2">();</span>
+
+                <span class="s0">int </span><span class="s1">fileLength </span><span class="s2">= (</span><span class="s0">int</span><span class="s2">) </span><span class="s1">lines </span><span class="s2">/ </span><span class="s3">6</span><span class="s2">;</span>
+                <span class="s1">System</span><span class="s2">.</span><span class="s1">out</span><span class="s2">.</span><span class="s1">println</span><span class="s2">(</span><span class="s1">fileLength</span><span class="s2">);</span>
+                <span class="s1">FileWriter write </span><span class="s2">= </span><span class="s0">new </span><span class="s1">FileWriter</span><span class="s2">(</span><span class="s4">&quot;ProfessorData.txt&quot;</span><span class="s2">, </span><span class="s0">true</span><span class="s2">);</span>
+                <span class="s1">write</span><span class="s2">.</span><span class="s1">write</span><span class="s2">((</span><span class="s1">fileLength </span><span class="s2">+ </span><span class="s3">1</span><span class="s2">) + </span><span class="s4">&quot;</span><span class="s0">\n</span><span class="s4">&quot; </span><span class="s2">+ </span><span class="s1">firstName </span><span class="s2">+ </span><span class="s4">&quot;</span><span class="s0">\n</span><span class="s4">&quot; </span><span class="s2">+ </span><span class="s1">lastName </span><span class="s2">+ </span><span class="s4">&quot;</span><span class="s0">\n</span><span class="s4">&quot; </span><span class="s2">+ </span><span class="s1">email </span><span class="s2">+ </span><span class="s4">&quot;</span><span class="s0">\n</span><span class="s4">&quot; </span><span class="s2">+ </span><span class="s1">saltedPassword </span><span class="s2">+ </span><span class="s4">&quot;</span><span class="s0">\n</span><span class="s4">&quot; </span><span class="s2">+ </span><span class="s1">salt </span><span class="s2">+ </span><span class="s4">&quot;</span><span class="s0">\n</span><span class="s4">&quot;</span><span class="s2">);</span>
+                <span class="s1">write</span><span class="s2">.</span><span class="s1">close</span><span class="s2">();</span>
+                <span class="s1">signUpLabel</span><span class="s2">.</span><span class="s1">setText</span><span class="s2">(</span><span class="s4">&quot;Sign Up Registered&quot;</span><span class="s2">);</span>
+
+            <span class="s2">} </span><span class="s0">catch </span><span class="s2">(</span><span class="s1">IOException e</span><span class="s2">) {</span>
+                <span class="s1">System</span><span class="s2">.</span><span class="s1">out</span><span class="s2">.</span><span class="s1">println</span><span class="s2">(</span><span class="s4">&quot;An error occurred&quot;</span><span class="s2">);</span>
+                <span class="s1">e</span><span class="s2">.</span><span class="s1">printStackTrace</span><span class="s2">();</span>
+            <span class="s2">}</span>
+        <span class="s2">}</span>
+
+
+    <span class="s2">}</span>
+
+    <span class="s0">public void </span><span class="s1">cancelClicked</span><span class="s2">(</span><span class="s1">ActionEvent actionEvent</span><span class="s2">) </span><span class="s0">throws </span><span class="s1">IOException </span><span class="s2">{</span>
+        <span class="s1">Parent signUp </span><span class="s2">= </span><span class="s1">FXMLLoader</span><span class="s2">.</span><span class="s1">load</span><span class="s2">(</span><span class="s1">Objects</span><span class="s2">.</span><span class="s1">requireNonNull</span><span class="s2">(</span><span class="s1">getClass</span><span class="s2">().</span><span class="s1">getResource</span><span class="s2">(</span><span class="s4">&quot;login.fxml&quot;</span><span class="s2">)));</span>
+        <span class="s1">Stage window </span><span class="s2">= (</span><span class="s1">Stage</span><span class="s2">) </span><span class="s1">cancelButton</span><span class="s2">.</span><span class="s1">getScene</span><span class="s2">().</span><span class="s1">getWindow</span><span class="s2">();</span>
+        <span class="s1">window</span><span class="s2">.</span><span class="s1">setScene</span><span class="s2">(</span><span class="s0">new </span><span class="s1">Scene</span><span class="s2">(</span><span class="s1">signUp</span><span class="s2">, </span><span class="s3">400</span><span class="s2">, </span><span class="s3">400</span><span class="s2">));</span>
+        <span class="s1">window</span><span class="s2">.</span><span class="s1">setTitle</span><span class="s2">(</span><span class="s4">&quot;Login&quot;</span><span class="s2">);</span>
+    <span class="s2">}</span>
+
+    <span class="s0">public int </span><span class="s1">onStudentRadioButtonClick</span><span class="s2">(</span><span class="s1">ActionEvent actionEvent</span><span class="s2">) {</span>
+        <span class="s1">studentOrProfessor </span><span class="s2">= </span><span class="s3">10</span><span class="s2">;</span>
+        <span class="s0">return </span><span class="s1">studentOrProfessor</span><span class="s2">;</span>
+
+    <span class="s2">}</span>
+
+    <span class="s0">public int </span><span class="s1">onProfessorRadioButtonClick</span><span class="s2">(</span><span class="s1">ActionEvent actionEvent</span><span class="s2">) {</span>
+        <span class="s1">studentOrProfessor </span><span class="s2">= </span><span class="s3">11</span><span class="s2">;</span>
+        <span class="s0">return </span><span class="s1">studentOrProfessor</span><span class="s2">;</span>
+    <span class="s2">}</span>
+
+    <span class="s0">public void </span><span class="s1">LastNameEntered</span><span class="s2">(</span><span class="s1">ActionEvent actionEvent</span><span class="s2">) {</span>
+    <span class="s2">}</span>
+
+    <span class="s0">public void </span><span class="s1">firstNameEntered</span><span class="s2">(</span><span class="s1">ActionEvent actionEvent</span><span class="s2">) {</span>
+    <span class="s2">}</span>
+<span class="s2">}</span>
+</pre>
+</body>
+</html>

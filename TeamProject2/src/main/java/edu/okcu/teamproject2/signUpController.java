@@ -10,14 +10,14 @@ import javafx.stage.Stage;
 import javax.crypto.BadPaddingException;
 import javax.crypto.IllegalBlockSizeException;
 import javax.crypto.NoSuchPaddingException;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
 import java.util.Objects;
+import java.util.Random;
+import java.util.Scanner;
 
 public class signUpController {
-    public TextField enterName;
     public TextField enterEmail;
     public PasswordField passwordBox;
     public Button signUpButton;
@@ -27,6 +27,7 @@ public class signUpController {
     public RadioButton professorRadioButton;
     public TextField enterLastName;
     public TextField enterFirstName;
+    public Label signUpLabel;
 
     String firstName;
     String lastName;
@@ -34,6 +35,9 @@ public class signUpController {
     String password;
     int studentOrProfessor = 0;
     String salt = EncryptionMethods.getSalt();
+    int signUpNumber = 0;
+    String saltedPassword;
+
 
 
 
@@ -51,17 +55,27 @@ public class signUpController {
     }
 
     public void signUpClick(ActionEvent actionEvent) throws NoSuchAlgorithmException, IOException, NoSuchPaddingException, IllegalBlockSizeException, BadPaddingException, InvalidKeyException {
+
         firstName = enterFirstName.getText();
         lastName = enterLastName.getText();
         email = enterEmail.getText();
         password = passwordBox.getText();
-        String saltedPassword = EncryptionMethods.encrypt(password, salt);
+        saltedPassword = EncryptionMethods.encrypt(password, salt);
+
+        if (firstName.isEmpty() || lastName.isEmpty() || email.isEmpty() || password.isEmpty()
+        ) {
+            studentOrProfessor = 0;
+            signUpLabel.setText("Please fill all fields");
+            studentProfessor.selectToggle(null);
+        }
 
         if (studentOrProfessor == 10) {
+            String studentID = generateStudentId(firstName, lastName);
             try {
                 FileWriter write = new FileWriter("StudentData.txt", true);
-                write.write("\n" + firstName + "\n" + lastName + "\n" + email + "\n" + saltedPassword + "\n" + salt + "\n");
+                write.write(studentID + "\n" + firstName + "\n" + lastName + "\n" + email + "\n" + saltedPassword + "\n" + salt + "\n");
                 write.close();
+                signUpLabel.setText("Sign Up Registered");
 
             } catch (IOException e) {
                 System.out.println("An error occurred");
@@ -71,9 +85,11 @@ public class signUpController {
 
         if (studentOrProfessor == 11) {
             try {
+                String studentID = generateStudentId(firstName, lastName);
                 FileWriter write = new FileWriter("ProfessorData.txt", true);
-                write.write("\n" + firstName + "\n" + lastName + "\n" + email + "\n" + saltedPassword + "\n" + salt + "\n");
+                write.write(studentID + "\n" + firstName + "\n" + lastName + "\n" + email + "\n" + saltedPassword + "\n" + salt + "\n");
                 write.close();
+                signUpLabel.setText("Sign Up Registered");
 
             } catch (IOException e) {
                 System.out.println("An error occurred");
@@ -106,5 +122,13 @@ public class signUpController {
     }
 
     public void firstNameEntered(ActionEvent actionEvent) {
+    }
+
+    public String generateStudentId(String firstName, String lastName) {
+        // Use the first letter of first name, the first letter of last name, and a random number to generate a unique ID
+        String initials = firstName.substring(0,1).toUpperCase() + lastName.substring(0,1).toUpperCase();
+        Random rand = new Random();
+        int randomNum = rand.nextInt(10000)+1;
+        return initials + randomNum;
     }
 }

@@ -42,6 +42,17 @@ public class theApplication extends Application {
             System.out.println("An error occurred.");
             e.printStackTrace();
         }
+        File file3 = new File("StudentClassData.txt");
+        try {
+            if (file3.createNewFile()) {
+                System.out.println("File Created: " + file3.getName());
+            } else {
+                System.out.println("File already exists.");
+            }
+        } catch (IOException e) {
+            System.out.println("An error occurred.");
+            e.printStackTrace();
+        }
         launch();
     }
 }

@@ -17,7 +17,12 @@ public class loginController {
     public Button signUpButton;
     @FXML
 
-    public void onStudentLoginButtonClick(ActionEvent actionEvent) {
+    public void onStudentLoginButtonClick(ActionEvent actionEvent) throws IOException {
+        Parent studentLogin = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("studentLogin.fxml")));
+        Stage window = (Stage) studentLoginButton.getScene().getWindow();
+        window.setScene(new Scene(studentLogin, 300, 300));
+        window.setTitle("Student Login");
+
     }
 
     public void onProfessorLoginButtonClick(ActionEvent actionEvent) {

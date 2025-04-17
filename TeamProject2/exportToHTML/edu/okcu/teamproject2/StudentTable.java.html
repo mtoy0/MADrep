@@ -1,0 +1,121 @@
+<html>
+<head>
+<title>StudentTable.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #cf8e6d;}
+.s1 { color: #bcbec4;}
+.s2 { color: #bcbec4;}
+.s3 { color: #6aab73;}
+.s4 { color: #2aacb8;}
+</style>
+</head>
+<body bgcolor="#1e1f22">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+StudentTable.java</font>
+</center></td></tr></table>
+<pre><span class="s0">package </span><span class="s1">edu</span><span class="s2">.</span><span class="s1">okcu</span><span class="s2">.</span><span class="s1">teamproject2</span><span class="s2">;</span>
+
+<span class="s0">import </span><span class="s1">javafx</span><span class="s2">.</span><span class="s1">event</span><span class="s2">.</span><span class="s1">ActionEvent</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">javafx</span><span class="s2">.</span><span class="s1">scene</span><span class="s2">.</span><span class="s1">control</span><span class="s2">.*;</span>
+<span class="s0">import </span><span class="s1">javafx</span><span class="s2">.</span><span class="s1">scene</span><span class="s2">.</span><span class="s1">control</span><span class="s2">.</span><span class="s1">cell</span><span class="s2">.</span><span class="s1">PropertyValueFactory</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">javafx</span><span class="s2">.</span><span class="s1">scene</span><span class="s2">.</span><span class="s1">input</span><span class="s2">.</span><span class="s1">MouseEvent</span><span class="s2">;</span>
+
+<span class="s0">import </span><span class="s1">java</span><span class="s2">.</span><span class="s1">io</span><span class="s2">.*;</span>
+<span class="s0">import </span><span class="s1">java</span><span class="s2">.</span><span class="s1">util</span><span class="s2">.</span><span class="s1">Objects</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">java</span><span class="s2">.</span><span class="s1">util</span><span class="s2">.</span><span class="s1">Scanner</span><span class="s2">;</span>
+
+<span class="s0">public class </span><span class="s1">StudentTable </span><span class="s0">extends </span><span class="s1">studentLoginController </span><span class="s2">{</span>
+
+
+
+    <span class="s0">public </span><span class="s1">TextField firstNameBox</span><span class="s2">;</span>
+    <span class="s0">public </span><span class="s1">TextField lastNameBox</span><span class="s2">;</span>
+    <span class="s0">public </span><span class="s1">TextField emailBox</span><span class="s2">;</span>
+    <span class="s0">public </span><span class="s1">TextField ageBox</span><span class="s2">;</span>
+    <span class="s0">public </span><span class="s1">Label idLabel</span><span class="s2">;</span>
+    <span class="s0">public </span><span class="s1">TableColumn firstNameColumn</span><span class="s2">;</span>
+    <span class="s0">public </span><span class="s1">TableColumn lastNameColumn</span><span class="s2">;</span>
+    <span class="s0">public </span><span class="s1">TableColumn emailColumn</span><span class="s2">;</span>
+    <span class="s0">public </span><span class="s1">TableColumn ageColumn</span><span class="s2">;</span>
+    <span class="s0">public </span><span class="s1">Button updateButton</span><span class="s2">;</span>
+    <span class="s0">public </span><span class="s1">Button clearButton</span><span class="s2">;</span>
+    <span class="s0">public </span><span class="s1">Button addButton</span><span class="s2">;</span>
+    <span class="s0">public </span><span class="s1">Button deleteButton</span><span class="s2">;</span>
+    <span class="s0">public </span><span class="s1">Button clearTextFieldButton</span><span class="s2">;</span>
+    <span class="s0">static </span><span class="s1">String studentID </span><span class="s2">= </span><span class="s3">&quot;&quot;</span><span class="s2">;</span>
+    <span class="s0">static </span><span class="s1">String firstName </span><span class="s2">= </span><span class="s3">&quot;&quot;</span><span class="s2">;</span>
+    <span class="s0">static </span><span class="s1">String lastName </span><span class="s2">= </span><span class="s3">&quot;&quot;</span><span class="s2">;</span>
+    <span class="s0">static </span><span class="s1">String email </span><span class="s2">= </span><span class="s3">&quot;&quot;</span><span class="s2">;</span>
+    <span class="s0">static </span><span class="s1">String password </span><span class="s2">= </span><span class="s3">&quot;&quot;</span><span class="s2">;</span>
+    <span class="s0">static </span><span class="s1">String salt </span><span class="s2">= </span><span class="s3">&quot;&quot;</span><span class="s2">;</span>
+    <span class="s0">public </span><span class="s1">TableView tableView</span><span class="s2">;</span>
+
+    <span class="s0">public void </span><span class="s1">initialize</span><span class="s2">() </span><span class="s0">throws </span><span class="s1">IOException </span><span class="s2">{</span>
+        <span class="s1">clearTextFieldButton</span><span class="s2">.</span><span class="s1">fire</span><span class="s2">();</span>
+        <span class="s1">BufferedReader reader </span><span class="s2">= </span><span class="s0">new </span><span class="s1">BufferedReader</span><span class="s2">(</span><span class="s0">new </span><span class="s1">FileReader</span><span class="s2">(</span><span class="s3">&quot;StudentData.txt&quot;</span><span class="s2">));</span>
+        <span class="s0">for </span><span class="s2">(</span><span class="s0">int </span><span class="s1">x </span><span class="s2">= </span><span class="s4">0</span><span class="s2">; </span><span class="s1">lines</span><span class="s2">&gt;= </span><span class="s1">x</span><span class="s2">; </span><span class="s1">x</span><span class="s2">++) {</span>
+            <span class="s1">String studentIDChecker </span><span class="s2">= </span><span class="s1">reader</span><span class="s2">.</span><span class="s1">readLine</span><span class="s2">();</span>
+            <span class="s1">firstName </span><span class="s2">= </span><span class="s1">reader</span><span class="s2">.</span><span class="s1">readLine</span><span class="s2">();</span>
+            <span class="s1">lastName </span><span class="s2">= </span><span class="s1">reader</span><span class="s2">.</span><span class="s1">readLine</span><span class="s2">();</span>
+            <span class="s1">email </span><span class="s2">= </span><span class="s1">reader</span><span class="s2">.</span><span class="s1">readLine</span><span class="s2">();</span>
+            <span class="s1">password </span><span class="s2">=</span><span class="s1">reader</span><span class="s2">.</span><span class="s1">readLine</span><span class="s2">();</span>
+            <span class="s1">salt </span><span class="s2">= </span><span class="s1">reader</span><span class="s2">.</span><span class="s1">readLine</span><span class="s2">();</span>
+
+            <span class="s0">if </span><span class="s2">(</span><span class="s1">Objects</span><span class="s2">.</span><span class="s1">equals</span><span class="s2">(</span><span class="s1">studentIDChecker</span><span class="s2">, </span><span class="s1">studentID</span><span class="s2">)) {</span>
+                <span class="s1">firstNameColumn</span><span class="s2">.</span><span class="s1">setText</span><span class="s2">(</span><span class="s1">firstName</span><span class="s2">);</span>
+                <span class="s1">lastNameColumn</span><span class="s2">.</span><span class="s1">setText</span><span class="s2">(</span><span class="s1">lastName</span><span class="s2">);</span>
+
+            <span class="s2">}</span>
+        <span class="s2">}</span>
+    <span class="s2">}</span>
+
+    <span class="s0">public </span><span class="s1">StudentTable</span><span class="s2">() </span><span class="s0">throws </span><span class="s1">FileNotFoundException </span><span class="s2">{</span>
+    <span class="s2">}</span>
+
+    <span class="s0">public void </span><span class="s1">firstNameEntered</span><span class="s2">(</span><span class="s1">ActionEvent actionEvent</span><span class="s2">) {</span>
+    <span class="s2">}</span>
+
+    <span class="s0">public void </span><span class="s1">lastNamedEntered</span><span class="s2">(</span><span class="s1">ActionEvent actionEvent</span><span class="s2">) {</span>
+    <span class="s2">}</span>
+
+    <span class="s0">public void </span><span class="s1">emailEntered</span><span class="s2">(</span><span class="s1">ActionEvent actionEvent</span><span class="s2">) {</span>
+    <span class="s2">}</span>
+
+    <span class="s0">public void </span><span class="s1">ageEntered</span><span class="s2">(</span><span class="s1">ActionEvent actionEvent</span><span class="s2">) {</span>
+    <span class="s2">}</span>
+
+    <span class="s0">public void </span><span class="s1">updateButtonClicked</span><span class="s2">(</span><span class="s1">ActionEvent actionEvent</span><span class="s2">) {</span>
+    <span class="s2">}</span>
+
+    <span class="s0">public void </span><span class="s1">clearButtonClicked</span><span class="s2">(</span><span class="s1">ActionEvent actionEvent</span><span class="s2">) {</span>
+    <span class="s2">}</span>
+
+    <span class="s0">public void </span><span class="s1">deleteButtonClicked</span><span class="s2">(</span><span class="s1">ActionEvent actionEvent</span><span class="s2">) {</span>
+    <span class="s2">}</span>
+
+    <span class="s0">public void </span><span class="s1">onClearTextFieldButton</span><span class="s2">(</span><span class="s1">ActionEvent actionEvent</span><span class="s2">) </span><span class="s0">throws </span><span class="s1">FileNotFoundException </span><span class="s2">{</span>
+        <span class="s1">idLabel</span><span class="s2">.</span><span class="s1">setText</span><span class="s2">(</span><span class="s3">&quot;Student ID: &quot; </span><span class="s2">+ </span><span class="s1">studentLoginController</span><span class="s2">.</span><span class="s1">number</span><span class="s2">);</span>
+        <span class="s1">File file </span><span class="s2">= </span><span class="s0">new </span><span class="s1">File</span><span class="s2">(</span><span class="s3">&quot;StudentData.txt&quot;</span><span class="s2">);</span>
+        <span class="s1">Scanner scan </span><span class="s2">= </span><span class="s0">new </span><span class="s1">Scanner</span><span class="s2">(</span><span class="s1">file</span><span class="s2">);</span>
+        <span class="s1">studentID </span><span class="s2">= </span><span class="s1">idLabel</span><span class="s2">.</span><span class="s1">getText</span><span class="s2">();</span>
+        <span class="s0">if </span><span class="s2">(</span><span class="s1">Objects</span><span class="s2">.</span><span class="s1">equals</span><span class="s2">(</span><span class="s1">scan</span><span class="s2">.</span><span class="s1">nextLine</span><span class="s2">(), </span><span class="s1">studentID</span><span class="s2">)) {</span>
+            <span class="s1">firstName </span><span class="s2">= </span><span class="s1">scan</span><span class="s2">.</span><span class="s1">nextLine</span><span class="s2">();</span>
+            <span class="s1">lastName </span><span class="s2">= </span><span class="s1">scan</span><span class="s2">.</span><span class="s1">nextLine</span><span class="s2">();</span>
+            <span class="s1">email </span><span class="s2">= </span><span class="s1">scan</span><span class="s2">.</span><span class="s1">nextLine</span><span class="s2">();</span>
+            <span class="s1">password </span><span class="s2">= </span><span class="s1">scan</span><span class="s2">.</span><span class="s1">nextLine</span><span class="s2">();</span>
+            <span class="s1">salt </span><span class="s2">= </span><span class="s1">scan</span><span class="s2">.</span><span class="s1">nextLine</span><span class="s2">();</span>
+        <span class="s2">}</span>
+
+
+
+
+    <span class="s2">}</span>
+
+    <span class="s0">public void </span><span class="s1">selectRow</span><span class="s2">(</span><span class="s1">MouseEvent mouseEvent</span><span class="s2">) {</span>
+    <span class="s2">}</span>
+<span class="s2">}</span></pre>
+</body>
+</html>

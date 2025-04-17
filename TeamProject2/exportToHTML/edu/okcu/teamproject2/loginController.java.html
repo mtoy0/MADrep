@@ -1,0 +1,57 @@
+<html>
+<head>
+<title>loginController.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #cf8e6d;}
+.s1 { color: #bcbec4;}
+.s2 { color: #bcbec4;}
+.s3 { color: #6aab73;}
+.s4 { color: #2aacb8;}
+</style>
+</head>
+<body bgcolor="#1e1f22">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+loginController.java</font>
+</center></td></tr></table>
+<pre><span class="s0">package </span><span class="s1">edu</span><span class="s2">.</span><span class="s1">okcu</span><span class="s2">.</span><span class="s1">teamproject2</span><span class="s2">;</span>
+
+<span class="s0">import </span><span class="s1">javafx</span><span class="s2">.</span><span class="s1">event</span><span class="s2">.</span><span class="s1">ActionEvent</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">javafx</span><span class="s2">.</span><span class="s1">fxml</span><span class="s2">.</span><span class="s1">FXML</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">javafx</span><span class="s2">.</span><span class="s1">fxml</span><span class="s2">.</span><span class="s1">FXMLLoader</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">javafx</span><span class="s2">.</span><span class="s1">scene</span><span class="s2">.</span><span class="s1">Parent</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">javafx</span><span class="s2">.</span><span class="s1">scene</span><span class="s2">.</span><span class="s1">Scene</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">javafx</span><span class="s2">.</span><span class="s1">scene</span><span class="s2">.</span><span class="s1">control</span><span class="s2">.</span><span class="s1">Button</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">javafx</span><span class="s2">.</span><span class="s1">stage</span><span class="s2">.</span><span class="s1">Stage</span><span class="s2">;</span>
+
+<span class="s0">import </span><span class="s1">java</span><span class="s2">.</span><span class="s1">io</span><span class="s2">.</span><span class="s1">IOException</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">java</span><span class="s2">.</span><span class="s1">util</span><span class="s2">.</span><span class="s1">Objects</span><span class="s2">;</span>
+
+<span class="s0">public class </span><span class="s1">loginController </span><span class="s2">{</span>
+    <span class="s0">public </span><span class="s1">Button studentLoginButton</span><span class="s2">;</span>
+    <span class="s0">public </span><span class="s1">Button professorLoginButton</span><span class="s2">;</span>
+    <span class="s0">public </span><span class="s1">Button signUpButton</span><span class="s2">;</span>
+    <span class="s1">@FXML</span>
+
+    <span class="s0">public void </span><span class="s1">onStudentLoginButtonClick</span><span class="s2">(</span><span class="s1">ActionEvent actionEvent</span><span class="s2">) </span><span class="s0">throws </span><span class="s1">IOException </span><span class="s2">{</span>
+        <span class="s1">Parent studentLogin </span><span class="s2">= </span><span class="s1">FXMLLoader</span><span class="s2">.</span><span class="s1">load</span><span class="s2">(</span><span class="s1">Objects</span><span class="s2">.</span><span class="s1">requireNonNull</span><span class="s2">(</span><span class="s1">getClass</span><span class="s2">().</span><span class="s1">getResource</span><span class="s2">(</span><span class="s3">&quot;studentLogin.fxml&quot;</span><span class="s2">)));</span>
+        <span class="s1">Stage window </span><span class="s2">= (</span><span class="s1">Stage</span><span class="s2">) </span><span class="s1">studentLoginButton</span><span class="s2">.</span><span class="s1">getScene</span><span class="s2">().</span><span class="s1">getWindow</span><span class="s2">();</span>
+        <span class="s1">window</span><span class="s2">.</span><span class="s1">setScene</span><span class="s2">(</span><span class="s0">new </span><span class="s1">Scene</span><span class="s2">(</span><span class="s1">studentLogin</span><span class="s2">, </span><span class="s4">300</span><span class="s2">, </span><span class="s4">300</span><span class="s2">));</span>
+        <span class="s1">window</span><span class="s2">.</span><span class="s1">setTitle</span><span class="s2">(</span><span class="s3">&quot;Student Login&quot;</span><span class="s2">);</span>
+
+    <span class="s2">}</span>
+
+    <span class="s0">public void </span><span class="s1">onProfessorLoginButtonClick</span><span class="s2">(</span><span class="s1">ActionEvent actionEvent</span><span class="s2">) {</span>
+    <span class="s2">}</span>
+
+    <span class="s0">public void </span><span class="s1">onSignUpButtonClick</span><span class="s2">(</span><span class="s1">ActionEvent actionEvent</span><span class="s2">) </span><span class="s0">throws </span><span class="s1">IOException </span><span class="s2">{</span>
+        <span class="s1">Parent signUp </span><span class="s2">= </span><span class="s1">FXMLLoader</span><span class="s2">.</span><span class="s1">load</span><span class="s2">(</span><span class="s1">Objects</span><span class="s2">.</span><span class="s1">requireNonNull</span><span class="s2">(</span><span class="s1">getClass</span><span class="s2">().</span><span class="s1">getResource</span><span class="s2">(</span><span class="s3">&quot;signUp.fxml&quot;</span><span class="s2">)));</span>
+        <span class="s1">Stage window </span><span class="s2">= (</span><span class="s1">Stage</span><span class="s2">) </span><span class="s1">signUpButton</span><span class="s2">.</span><span class="s1">getScene</span><span class="s2">().</span><span class="s1">getWindow</span><span class="s2">();</span>
+        <span class="s1">window</span><span class="s2">.</span><span class="s1">setScene</span><span class="s2">(</span><span class="s0">new </span><span class="s1">Scene</span><span class="s2">(</span><span class="s1">signUp</span><span class="s2">, </span><span class="s4">400</span><span class="s2">, </span><span class="s4">400</span><span class="s2">));</span>
+        <span class="s1">window</span><span class="s2">.</span><span class="s1">setTitle</span><span class="s2">(</span><span class="s3">&quot;Sign Up&quot;</span><span class="s2">);</span>
+    <span class="s2">}</span>
+<span class="s2">}</span></pre>
+</body>
+</html>

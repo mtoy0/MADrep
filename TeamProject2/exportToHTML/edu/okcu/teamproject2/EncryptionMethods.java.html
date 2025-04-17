@@ -1,0 +1,97 @@
+<html>
+<head>
+<title>EncryptionMethods.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #cf8e6d;}
+.s1 { color: #bcbec4;}
+.s2 { color: #bcbec4;}
+.s3 { color: #7a7e85;}
+.s4 { color: #6aab73;}
+.s5 { color: #2aacb8;}
+</style>
+</head>
+<body bgcolor="#1e1f22">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+EncryptionMethods.java</font>
+</center></td></tr></table>
+<pre><span class="s0">package </span><span class="s1">edu</span><span class="s2">.</span><span class="s1">okcu</span><span class="s2">.</span><span class="s1">teamproject2</span><span class="s2">;</span>
+
+<span class="s0">import </span><span class="s1">java</span><span class="s2">.</span><span class="s1">security</span><span class="s2">.</span><span class="s1">SecureRandom</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">java</span><span class="s2">.</span><span class="s1">util</span><span class="s2">.</span><span class="s1">Arrays</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">java</span><span class="s2">.</span><span class="s1">security</span><span class="s2">.</span><span class="s1">InvalidKeyException</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">java</span><span class="s2">.</span><span class="s1">security</span><span class="s2">.</span><span class="s1">MessageDigest</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">java</span><span class="s2">.</span><span class="s1">security</span><span class="s2">.</span><span class="s1">NoSuchAlgorithmException</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">javax</span><span class="s2">.</span><span class="s1">crypto</span><span class="s2">.</span><span class="s1">BadPaddingException</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">javax</span><span class="s2">.</span><span class="s1">crypto</span><span class="s2">.</span><span class="s1">Cipher</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">java</span><span class="s2">.</span><span class="s1">util</span><span class="s2">.</span><span class="s1">Base64</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">java</span><span class="s2">.</span><span class="s1">io</span><span class="s2">.</span><span class="s1">UnsupportedEncodingException</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">javax</span><span class="s2">.</span><span class="s1">crypto</span><span class="s2">.</span><span class="s1">IllegalBlockSizeException</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">javax</span><span class="s2">.</span><span class="s1">crypto</span><span class="s2">.</span><span class="s1">NoSuchPaddingException</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">javax</span><span class="s2">.</span><span class="s1">crypto</span><span class="s2">.</span><span class="s1">spec</span><span class="s2">.</span><span class="s1">SecretKeySpec</span><span class="s2">;</span>
+
+<span class="s0">public abstract class </span><span class="s1">EncryptionMethods </span><span class="s2">{</span>
+    <span class="s3">//information and methods come from Professor Maxwell's security presentation and online resources</span>
+    <span class="s3">//I am not too sure how it all works, but will do my best to explain</span>
+
+    <span class="s3">//initialize variables</span>
+    <span class="s0">public static </span><span class="s1">SecretKeySpec secretKey</span><span class="s2">;</span>
+    <span class="s0">public static byte</span><span class="s2">[] </span><span class="s1">key</span><span class="s2">;</span>
+    <span class="s1">String secret </span><span class="s2">= </span><span class="s4">&quot;A(&amp;*&amp;Niu87&quot;</span><span class="s2">;</span>
+
+    <span class="s3">//method to set key</span>
+    <span class="s0">public static void </span><span class="s1">setKey</span><span class="s2">(</span><span class="s1">String myKey</span><span class="s2">) </span><span class="s0">throws </span><span class="s1">UnsupportedEncodingException</span><span class="s2">, </span><span class="s1">NoSuchAlgorithmException </span><span class="s2">{</span>
+        <span class="s1">MessageDigest md </span><span class="s2">= </span><span class="s0">null</span><span class="s2">;</span>
+        <span class="s1">key </span><span class="s2">= </span><span class="s1">myKey</span><span class="s2">.</span><span class="s1">getBytes</span><span class="s2">(</span><span class="s4">&quot;UTF-8&quot;</span><span class="s2">);</span>
+        <span class="s1">md </span><span class="s2">= </span><span class="s1">MessageDigest</span><span class="s2">.</span><span class="s1">getInstance</span><span class="s2">(</span><span class="s4">&quot;SHA-512&quot;</span><span class="s2">);</span>
+        <span class="s1">key </span><span class="s2">= </span><span class="s1">md</span><span class="s2">.</span><span class="s1">digest</span><span class="s2">(</span><span class="s1">key</span><span class="s2">);</span>
+        <span class="s1">key </span><span class="s2">= </span><span class="s1">Arrays</span><span class="s2">.</span><span class="s1">copyOf</span><span class="s2">(</span><span class="s1">key</span><span class="s2">, </span><span class="s5">16</span><span class="s2">);</span>
+        <span class="s1">secretKey </span><span class="s2">= </span><span class="s0">new </span><span class="s1">SecretKeySpec</span><span class="s2">(</span><span class="s1">key</span><span class="s2">, </span><span class="s4">&quot;AES&quot;</span><span class="s2">);</span>
+    <span class="s2">}</span>
+    <span class="s3">//method to encrypt data using the provided key,</span>
+    <span class="s0">public static </span><span class="s1">String encrypt</span><span class="s2">(</span><span class="s1">String strToEncrypt</span><span class="s2">, </span><span class="s1">String secret</span><span class="s2">) </span><span class="s0">throws </span><span class="s1">InvalidKeyException</span><span class="s2">, </span><span class="s1">UnsupportedEncodingException</span><span class="s2">, </span><span class="s1">NoSuchAlgorithmException</span><span class="s2">, </span><span class="s1">NoSuchPaddingException</span><span class="s2">, </span><span class="s1">IllegalBlockSizeException</span><span class="s2">, </span><span class="s1">BadPaddingException </span><span class="s2">{</span>
+        <span class="s1">setKey</span><span class="s2">(</span><span class="s1">secret</span><span class="s2">);</span>
+        <span class="s1">Cipher cipher </span><span class="s2">= </span><span class="s1">Cipher</span><span class="s2">.</span><span class="s1">getInstance</span><span class="s2">(</span><span class="s4">&quot;AES/ECB/PKCS5Padding&quot;</span><span class="s2">);</span>
+        <span class="s1">cipher</span><span class="s2">.</span><span class="s1">init</span><span class="s2">(</span><span class="s1">Cipher</span><span class="s2">.</span><span class="s1">ENCRYPT_MODE</span><span class="s2">, </span><span class="s1">secretKey</span><span class="s2">);</span>
+        <span class="s0">byte</span><span class="s2">[] </span><span class="s1">strToEncryptBytes </span><span class="s2">= </span><span class="s1">strToEncrypt</span><span class="s2">.</span><span class="s1">getBytes</span><span class="s2">(</span><span class="s4">&quot;UTF-8&quot;</span><span class="s2">);</span>
+        <span class="s0">byte</span><span class="s2">[] </span><span class="s1">finalCipher </span><span class="s2">= </span><span class="s1">cipher</span><span class="s2">.</span><span class="s1">doFinal</span><span class="s2">(</span><span class="s1">strToEncryptBytes</span><span class="s2">);</span>
+        <span class="s0">return </span><span class="s1">Base64</span><span class="s2">.</span><span class="s1">getEncoder</span><span class="s2">().</span><span class="s1">encodeToString</span><span class="s2">(</span><span class="s1">finalCipher</span><span class="s2">);</span>
+    <span class="s2">}</span>
+
+    <span class="s3">//method to decrypt data using the same key</span>
+    <span class="s0">public static </span><span class="s1">String decrypt</span><span class="s2">(</span><span class="s1">String strToDecrypt</span><span class="s2">, </span><span class="s1">String secret</span><span class="s2">) </span><span class="s0">throws </span><span class="s1">UnsupportedEncodingException</span><span class="s2">, </span><span class="s1">NoSuchAlgorithmException</span><span class="s2">, </span><span class="s1">NoSuchPaddingException</span><span class="s2">, </span><span class="s1">InvalidKeyException</span><span class="s2">, </span><span class="s1">IllegalBlockSizeException</span><span class="s2">, </span><span class="s1">BadPaddingException </span><span class="s2">{</span>
+        <span class="s1">setKey</span><span class="s2">(</span><span class="s1">secret</span><span class="s2">);</span>
+        <span class="s1">Cipher cipher </span><span class="s2">= </span><span class="s1">Cipher</span><span class="s2">.</span><span class="s1">getInstance</span><span class="s2">(</span><span class="s4">&quot;AES/ECB/PKCS5Padding&quot;</span><span class="s2">);</span>
+        <span class="s1">cipher</span><span class="s2">.</span><span class="s1">init</span><span class="s2">(</span><span class="s1">Cipher</span><span class="s2">.</span><span class="s1">DECRYPT_MODE</span><span class="s2">, </span><span class="s1">secretKey</span><span class="s2">);</span>
+        <span class="s0">byte</span><span class="s2">[] </span><span class="s1">finalByteString </span><span class="s2">= </span><span class="s1">Base64</span><span class="s2">.</span><span class="s1">getDecoder</span><span class="s2">().</span><span class="s1">decode</span><span class="s2">(</span><span class="s1">strToDecrypt</span><span class="s2">);</span>
+        <span class="s0">return new </span><span class="s1">String</span><span class="s2">(</span><span class="s1">cipher</span><span class="s2">.</span><span class="s1">doFinal</span><span class="s2">(</span><span class="s1">finalByteString</span><span class="s2">));</span>
+    <span class="s2">}</span>
+
+    <span class="s3">//generates salt for password encryption</span>
+    <span class="s0">public static </span><span class="s1">String getSalt</span><span class="s2">() </span><span class="s0">throws </span><span class="s1">NoSuchAlgorithmException </span><span class="s2">{</span>
+        <span class="s1">SecureRandom random </span><span class="s2">= </span><span class="s1">SecureRandom</span><span class="s2">.</span><span class="s1">getInstance</span><span class="s2">(</span><span class="s4">&quot;SHA1PRNG&quot;</span><span class="s2">);</span>
+        <span class="s0">byte</span><span class="s2">[] </span><span class="s1">salt </span><span class="s2">= </span><span class="s0">new byte</span><span class="s2">[</span><span class="s5">16</span><span class="s2">];</span>
+        <span class="s1">random</span><span class="s2">.</span><span class="s1">nextBytes</span><span class="s2">(</span><span class="s1">salt</span><span class="s2">);</span>
+        <span class="s0">return </span><span class="s1">Base64</span><span class="s2">.</span><span class="s1">getEncoder</span><span class="s2">().</span><span class="s1">encodeToString</span><span class="s2">(</span><span class="s1">salt</span><span class="s2">);</span>
+    <span class="s2">}</span>
+
+    <span class="s3">//hashes password using salt</span>
+    <span class="s0">public static </span><span class="s1">String hashPassword</span><span class="s2">(</span><span class="s1">String passwordToHash</span><span class="s2">, </span><span class="s1">String saltString</span><span class="s2">) </span><span class="s0">throws </span><span class="s1">NoSuchAlgorithmException </span><span class="s2">{</span>
+        <span class="s1">String generatedPassword </span><span class="s2">= </span><span class="s0">null</span><span class="s2">;</span>
+        <span class="s0">byte</span><span class="s2">[] </span><span class="s1">salt </span><span class="s2">= </span><span class="s1">Base64</span><span class="s2">.</span><span class="s1">getDecoder</span><span class="s2">().</span><span class="s1">decode</span><span class="s2">(</span><span class="s1">saltString</span><span class="s2">);</span>
+        <span class="s1">MessageDigest md </span><span class="s2">= </span><span class="s1">MessageDigest</span><span class="s2">.</span><span class="s1">getInstance</span><span class="s2">(</span><span class="s4">&quot;SHA-512&quot;</span><span class="s2">);</span>
+        <span class="s1">md</span><span class="s2">.</span><span class="s1">update</span><span class="s2">(</span><span class="s1">salt</span><span class="s2">);</span>
+        <span class="s0">byte</span><span class="s2">[] </span><span class="s1">bytes </span><span class="s2">= </span><span class="s1">md</span><span class="s2">.</span><span class="s1">digest</span><span class="s2">(</span><span class="s1">passwordToHash</span><span class="s2">.</span><span class="s1">getBytes</span><span class="s2">());</span>
+        <span class="s1">StringBuilder sb </span><span class="s2">= </span><span class="s0">new </span><span class="s1">StringBuilder</span><span class="s2">();</span>
+        <span class="s0">for </span><span class="s2">(</span><span class="s0">byte </span><span class="s1">aByte </span><span class="s2">: </span><span class="s1">bytes</span><span class="s2">) {</span>
+            <span class="s1">sb</span><span class="s2">.</span><span class="s1">append</span><span class="s2">(</span><span class="s1">String</span><span class="s2">.</span><span class="s1">format</span><span class="s2">(</span><span class="s4">&quot;%02x&quot;</span><span class="s2">, </span><span class="s1">aByte</span><span class="s2">));</span>
+        <span class="s2">}</span>
+        <span class="s1">generatedPassword </span><span class="s2">= </span><span class="s1">sb</span><span class="s2">.</span><span class="s1">toString</span><span class="s2">();</span>
+
+        <span class="s0">return </span><span class="s1">generatedPassword</span><span class="s2">;</span>
+    <span class="s2">}</span>
+<span class="s2">}</span></pre>
+</body>
+</html>
